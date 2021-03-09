@@ -1,0 +1,105 @@
+<style>
+* {
+ font-family: Courier New;
+}
+.cab, .total {
+ text-align: center;
+ padding: 5%;
+ background-color: black;
+ color: white;
+}
+#container {
+ width: 90%;
+ margin: auto;
+}
+div.scrollMenu {
+ background-color: black;
+ overflow: auto;
+ white-space: nowrap;
+}
+div.scrollMenu button {
+ display: inline-block;
+ color: white;
+ //text-align: center;
+ padding: 3%;
+ text-decoration: none;
+}
+button {
+ background-color: black;
+ border: none;
+ cursor: pointer;
+}
+div.scrollMenu button:hover {
+ background-color: silver;
+ color: black;
+}
+div.scrollMenu button.active {
+ background-color: gray;
+}
+
+.tabcontent {
+ display: none;
+ text-align: center;
+ padding: 10px;
+ background-color: gray;
+}
+
+#bX100 {
+ display: block;
+}
+
+.total div {
+ display: block;
+}
+</style>
+
+<section id="container">
+ <div class="cab">Exp. calculator</div>
+ <div class="scrollMenu">
+  <button class="tabLinks bookX100" onclick="openTab(event, 'bX100')">100xp</button>
+  <button class="tabLinks bookX500" onclick="openTab(event, 'bX500')">500xp</button>
+  <button class="tabLinks bookX1000" onclick="openTab(event, 'bX1000')">1000xp</button>
+  <button class="tabLinks bookX5000">5000xp</button>
+  <button class="tabLinks bookX10000">10000xp</button>
+  <button class="tabLinks bookX50000">50000xp</button>
+  <button class="tabLinks bookX100000">100000xp</button>
+  <button class="tabLinks bookX200000">200000xp</button>
+  <button class="tabLinks bookX500000">500000xp</button>
+  <button class="tabLinks bookX1000000">1000000xp</button>
+ </div>
+
+ <div class="tabContent" id="bX100">
+  <input type="number">
+ </div>
+ <div class="tabContent" id="bX500">
+  <input type="number">
+ </div>
+ <div class="tabContent">
+  <input type="number">
+ </div>
+
+ <div class="inXP"></div>
+
+ <div class="total">
+  <div>total = <span id="numTotal"></span></div>
+ </div>
+</section>
+
+<script>
+window.onload = function() {
+ document.querySelector(".bookX100").className += " active";
+}
+function openTab(e, xp) {
+ var tabContent, tabLinks;
+ tabContent = document.querySelectorAll(".tabContent");
+ for(let i=0 ; i<tabContent.length; i++) {
+  tabContent[i].style.display = "none"; 
+ }
+ tabLinks = document.querySelectorAll(".tabLinks");
+ for (let i=0 ; i<tabLinks.length; i++) {
+  tabLinks[i].className = tabLinks[i].className.replace(" active", "");
+ }
+ document.getElementById(xp).style.display = "block";
+ e.currentTarget.className += " active";
+}
+</script>
