@@ -121,6 +121,7 @@ div.scrollMenu button.active {
 </section>
 
 <script>
+
 window.onload = function() {
  document.querySelector(".bookX100").className += " active";
 }
@@ -142,13 +143,17 @@ function openTab(e, xp) {
  listNum.forEach(myFunction);
  function myFunction(item, index) {
   item.addEventListener("keyup", function() {
-
-   //alert(item + index + this.value);
    if(this.value != 0) {
     document.querySelector("#x"+index).innerHTML = this.value * parseInt(this.parentElement.id.substr(2,7)) + "xp of books " + this.parentElement.id.substr(1,8) + "(" + this.value + ")";
    } else {
     document.querySelector("#x"+index).innerHTML = "";
    }
+   countTotal();
   });
  }
+ 
+function countTotal() { 
+ var listTotal = document.querySelectorAll(".numOut");
+ alert(listTotal[0].innerHTML);
+}
 </script>
