@@ -64,13 +64,13 @@ div.scrollMenu button.active {
   <button class="tabLinks bookX100" onclick="openTab(event, 'bX100')">100xp</button>
   <button class="tabLinks bookX500" onclick="openTab(event, 'bX500')">500xp</button>
   <button class="tabLinks bookX1000" onclick="openTab(event, 'bX1000')">1000xp</button>
-  <button class="tabLinks bookX5000">5000xp</button>
-  <button class="tabLinks bookX10000">10000xp</button>
-  <button class="tabLinks bookX50000">50000xp</button>
-  <button class="tabLinks bookX100000">100000xp</button>
-  <button class="tabLinks bookX200000">200000xp</button>
-  <button class="tabLinks bookX500000">500000xp</button>
-  <button class="tabLinks bookX1000000">1000000xp</button>
+  <button class="tabLinks bookX5000" onclick="openTab(event, 'bX5000')">5000xp</button>
+  <button class="tabLinks bookX10000" onclick="openTab(event, 'bX10000')">10000xp</button>
+  <button class="tabLinks bookX50000" onclick="openTab(event, 'bX50000')">50000xp</button>
+  <button class="tabLinks bookX100000" onclick="openTab(event, 'bX100000')">100000xp</button>
+  <button class="tabLinks bookX200000" onclick="openTab(event, 'bX200000')">200000xp</button>
+  <button class="tabLinks bookX500000" onclick="openTab(event, 'bX500000')">500000xp</button>
+  <button class="tabLinks bookX1000000" onclick="openTab(event, 'bX1000000')">1000000xp</button>
  </div>
 
  <div class="tabContent" id="bX100">
@@ -79,13 +79,43 @@ div.scrollMenu button.active {
  <div class="tabContent" id="bX500">
   <input type="number">
  </div>
- <div class="tabContent">
+ <div class="tabContent" id="bX1000">
+  <input type="number">
+ </div>
+ <div class="tabContent" id="bX5000">
+  <input type="number">
+ </div>
+ <div class="tabContent" id="bX10000">
+  <input type="number">
+ </div>
+ <div class="tabContent" id="bX50000">
+  <input type="number">
+ </div>
+ <div class="tabContent" id="bX100000">
+  <input type="number">
+ </div>
+ <div class="tabContent" id="bX200000">
+  <input type="number">
+ </div>
+ <div class="tabContent" id="bX500000">
+  <input type="number">
+ </div>
+ <div class="tabContent" id="bX1000000">
   <input type="number">
  </div>
 
  <div class="inXP"></div>
-  <div id="x0" class="numOut" name="100"></div>
- <div class="total">
+  <div id="x0" class="numOut"></div>
+  <div id="x1" class="numOut"></div>
+  <div id="x2" class="numOut"></div>
+  <div id="x3" class="numOut"></div>
+  <div id="x4" class="numOut"></div>
+  <div id="x5" class="numOut"></div>
+  <div id="x6" class="numOut"></div>
+  <div id="x7" class="numOut"></div>
+  <div id="x8" class="numOut"></div>
+  <div id="x9" class="numOut"></div>
+ <div class="total"> 
   <div>total = <span id="numTotal"></span></div>
  </div>
 </section>
@@ -115,7 +145,7 @@ function openTab(e, xp) {
 
    //alert(item + index + this.value);
    if(this.value != 0) {
-    document.querySelector("#x"+index).innerHTML = this.value * parseInt(this.parentElement.id.substr(2,7)) + "xp of books " + this.parentElement.id.substr(1,8);
+    document.querySelector("#x"+index).innerHTML = this.value * parseInt(this.parentElement.id.substr(2,7)) + "xp of books " + this.parentElement.id.substr(1,8) + "(" + this.value + ")";
    } else {
     document.querySelector("#x"+index).innerHTML = "";
    }
