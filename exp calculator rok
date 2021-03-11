@@ -4,7 +4,12 @@
 }
 .cab, .total {
  text-align: center;
- padding: 5%;
+ padding: 2%;
+ background-color: black;
+ color: white;
+}
+.numOut {
+ text-align: center;
  background-color: black;
  color: white;
 }
@@ -79,7 +84,7 @@ div.scrollMenu button.active {
  </div>
 
  <div class="inXP"></div>
-
+  <div id="x0" class="numOut" name="100"></div>
  <div class="total">
   <div>total = <span id="numTotal"></span></div>
  </div>
@@ -102,4 +107,18 @@ function openTab(e, xp) {
  document.getElementById(xp).style.display = "block";
  e.currentTarget.className += " active";
 }
+
+ var listNum = document.querySelectorAll("input");
+ listNum.forEach(myFunction);
+ function myFunction(item, index) {
+  item.addEventListener("keyup", function() {
+
+   //alert(item + index + this.value);
+   if(this.value != 0) {
+    document.querySelector("#x"+index).innerHTML = this.value * parseInt(this.parentElement.id.substr(2,7)) + "xp of books " + this.parentElement.id.substr(1,8);
+   } else {
+    document.querySelector("#x"+index).innerHTML = "";
+   }
+  });
+ }
 </script>
