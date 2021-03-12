@@ -139,21 +139,31 @@ function openTab(e, xp) {
  e.currentTarget.className += " active";
 }
 
- var listNum = document.querySelectorAll("input");
- listNum.forEach(myFunction);
- function myFunction(item, index) {
-  item.addEventListener("keyup", function() {
-   if(this.value != 0) {
-    document.querySelector("#x"+index).innerHTML = this.value * parseInt(this.parentElement.id.substr(2,7)) + "xp of books " + this.parentElement.id.substr(1,8) + "(" + this.value + ")";
-   } else {
-    document.querySelector("#x"+index).innerHTML = "";
-   }
-   countTotal();
-  });
- }
+var listNum = document.querySelectorAll("input");
+listNum.forEach(myFunction);
+
+function myFunction(item, index) {
+ item.addEventListener("keyup", function() {
+  if(this.value != 0) {
+   document.querySelector("#x"+index).innerHTML = this.value * parseInt(this.parentElement.id.substr(2,7)) + "xp of books " + this.parentElement.id.substr(1,8) + "(" + this.value + ")";
+  } else {
+   document.querySelector("#x"+index).innerHTML = "";
+  }
+  countTotal();
+ });
+}
  
+var total;
 function countTotal() { 
  var listTotal = document.querySelectorAll(".numOut");
- alert(listTotal[0].innerHTML);
+ total = 0;
+ listTotal.forEach(myFunction2);
+ document.querySelector("#numTotal").innerHTML = total;
+}
+
+function myFunction2(item, index) {
+ if (parseInt(item.innerHTML.substr(0,item.innerHTML.search("x")))) {
+  total += parseInt(item.innerHTML.substr(0,item.innerHTML.search("x")));
+ }
 }
 </script>
