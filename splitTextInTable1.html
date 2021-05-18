@@ -1,0 +1,26 @@
+<textarea></textarea>
+<input type="text">
+<button>Table Generator</button>
+<container></container>
+
+<script>
+ var txtRows;
+ var txtrow;
+ var newTable;
+ document.querySelector("button").onclick = function() {
+  txtRows = document.querySelector("textarea").value.split(/\n\r?/g);
+  newTable = "<table>";
+  for(let i=0; i<txtRows.length; i++) {
+   newTable += "<tr>";
+   txtRow = txtRows[i].split(document.querySelector("input").value);
+   for(let j=0; j<txtRow.length; j++) {
+    newTable += "<th>" + txtRow[j] + "</th>";
+   }
+   newTable += "</tr>";
+  }
+  newTable += "</table>";
+  document.querySelector("container").innerHTML = newTable;
+  document.querySelector("textarea").select();
+  document.execCommand("copy");
+ }
+</script>
