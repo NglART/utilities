@@ -1,0 +1,46 @@
+<table id="myP">
+<tr>
+<td>Hello1</td><td>Hello2</td>
+</tr>
+<tr>
+<td>Hello4</td><td>Hello4</td>
+</tr>
+</table>
+<button>CLICK ME</button>
+<script>
+
+document.querySelector("button").onclick = function() {
+ myFunction();
+};
+function myFunction() {
+    const doc = document;
+    const text = doc.getElementById("myP");
+    let range;
+    let selection;
+
+    if( doc.body.createTextRange ) {
+
+        range = doc.body.createTextRange();
+        range.moveToElement( text );
+        range.select();
+
+    } else if ( window.getSelection ) {
+
+        selection = window.getSelection();
+
+        range = doc.createRange();
+        range.selectNodeContents( text );
+
+        selection.removeAllRanges();
+        selection.addRange( range );
+
+    }
+
+    document.execCommand( 'copy' );
+    window.getSelection().removeAllRanges();
+    document.getElementById( 'clickMe' ).value = 'Copied to clipboard!';
+
+}
+
+
+</script>
