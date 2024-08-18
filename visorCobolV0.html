@@ -32,7 +32,7 @@ var btn1 = document.querySelector("#btn1");
     for(i in txtValue) {
   
        let txtValueTrim = txtValue[i].trim();
-       var firstWord = txtValueTrim.replace(/ .*/,'');
+       let firstWord = txtValueTrim.replace(/ .*/,'');
      
        if (firstWord == "END-IF") {
           tabNumber = tabNumber - 1;
@@ -54,7 +54,6 @@ var btn1 = document.querySelector("#btn1");
   let newDiv = document.createElement("div");
   
   newDiv.setAttribute("class", "democlass");
-  //newDiv.innerHTML = txtValue[i];
   newDiv.innerHTML = spaces + txtValueTrim;
   document.querySelector("#myDiv").appendChild(newDiv);
   
@@ -64,19 +63,48 @@ var btn1 = document.querySelector("#btn1");
   }
      
        if (firstWord == "PERFORM") {
+          spaces = spaces + "&nbsp&nbsp&nbsp&nbsp";
           let oldi = i;
-          alert(oldi);
-          let newi = searchPerform(txtValue);
-          alert(newi);
+  //        alert(oldi);
+          var secondString = txtValue[i].replace(firstWord,'');
+          let secondStringTrim = secondString.trim();
+          var secondWord = secondStringTrim.replace(/ .*/,'');
+//          alert(secondString);
+          let newi = searchPerform(txtValue, secondWord);
+          for(p in txtValue) {
+             if (p > newi) {
+                let txtValueTrimP = txtValue[p].trim();
+                let newDiv = document.createElement("div");
+                newDiv.setAttribute("class", "democlass");
+                newDiv.innerHTML = spaces + txtValueTrimP;
+                document.querySelector("#myDiv").appendChild(newDiv);
+             }
+          }
+ //         alert(newi);
        }
   //let lineBreak = document.createElement("br");
   //document.querySelector("#myDiv").appendChild(lineBreak); 
  }
 }
 
-   function searchPerform(txtValue) {
+   function searchPerform(txtValue, secondWord) {
+      let find = false;
       for(i in txtValue) {
-         alert(txtValue[i]);
+       let txtValueTrim = txtValue[i].trim();
+       let firstWord = txtValueTrim.replace(/ .*/,'');
+       
+       if (firstWord == secondWord.concat(".")) {
+          find = true;
+       }
+       
+       if (find) {
+                let newDiv = document.createElement("div");
+                newDiv.setAttribute("class", "democlass");
+                newDiv.innerHTML = "find";
+                document.querySelector("#myDiv").appendChild(newDiv);
+          return i;
+       }
+       
       }
    } 
 
