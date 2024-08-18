@@ -88,8 +88,8 @@ var btn1 = document.querySelector("#btn1");
          let firstWord = txtValueTrim.replace(/ .*/,'');
        
          if (firstWord == secondWord.concat(".")) {
-            i ++;
             find = true;
+            continue;
          }
        
          if (find) {
