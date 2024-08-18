@@ -29,6 +29,7 @@ var tabNumber = 0;
 btn1.onclick = function() {
  document.querySelector("#myDiv").innerHTML="";
  var txtValue = txt.value.split(/\n\r?/g);
+ var spaces = "";
  for(i in txtValue) {
   
   //let space = document.createElement("span");
@@ -38,11 +39,19 @@ btn1.onclick = function() {
   //var node = document.createTextNode(txtValue[i]);
   //document.querySelector("#myDiv").appendChild(node);
 
+  let txtValueTrim = txtValue[i].trim();
+  var firstWord = txtValueTrim.replace(/ .*/,'');
+
   let newDiv = document.createElement("div");
+  
   newDiv.setAttribute("class", "democlass");
-  newDiv.innerHTML = txtValue[i];
+  //newDiv.innerHTML = txtValue[i];
+  newDiv.innerHTML = spaces + firstWord;
   document.querySelector("#myDiv").appendChild(newDiv);
   
+  if (firstWord == "IF") {
+     spaces = spaces + "&nbsp&nbsp&nbsp&nbsp";
+  }
   //let lineBreak = document.createElement("br");
   //document.querySelector("#myDiv").appendChild(lineBreak); 
  }
