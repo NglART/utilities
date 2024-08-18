@@ -2,8 +2,14 @@
 textarea {
  width: 100%;
 }
+#myDiv {
+   display: flex;
+   flex-direction: column;
+   font-family: 'Courier New', monospace;
+}
 .democlass {
   background-color: lightblue;
+  opacity : 0.5;
   color: green;
 }
 </style>
@@ -25,20 +31,20 @@ btn1.onclick = function() {
  var txtValue = txt.value.split(/\n\r?/g);
  for(i in txtValue) {
   
-  let space = document.createElement("span");
-  space.innerHTML = "&nbsp&nbsp&nbsp&nbsp";  
-  document.querySelector("#myDiv").appendChild(space);
+  //let space = document.createElement("span");
+  //space.innerHTML = "&nbsp&nbsp&nbsp&nbsp";  
+  //document.querySelector("#myDiv").appendChild(space);
   
-  var node = document.createTextNode(txtValue[i]);
-  document.querySelector("#myDiv").appendChild(node);
+  //var node = document.createTextNode(txtValue[i]);
+  //document.querySelector("#myDiv").appendChild(node);
 
   let newDiv = document.createElement("div");
   newDiv.setAttribute("class", "democlass");
   newDiv.innerHTML = txtValue[i];
   document.querySelector("#myDiv").appendChild(newDiv);
   
-  let lineBreak = document.createElement("br");
-  document.querySelector("#myDiv").appendChild(lineBreak); 
+  //let lineBreak = document.createElement("br");
+  //document.querySelector("#myDiv").appendChild(lineBreak); 
  }
 }
 
