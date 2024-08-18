@@ -3,13 +3,13 @@ textarea {
  width: 100%;
 }
 #myDiv {
+   background-color: #000;
    display: flex;
    flex-direction: column;
    font-family: 'Courier New', monospace;
 }
 .democlass {
-  background-color: lightblue;
-  opacity : 0.5;
+  background-color: rgba(0,0,0,.3);
   color: green;
 }
 </style>
@@ -24,13 +24,24 @@ textarea {
  
 var txt = document.querySelector("#textarea1");
 var btn1 = document.querySelector("#btn1");
-var tabNumber = 0;
-
-btn1.onclick = function() {
- document.querySelector("#myDiv").innerHTML="";
- var txtValue = txt.value.split(/\n\r?/g);
- var spaces = "";
- for(i in txtValue) {
+ 
+ btn1.onclick = function() {
+    document.querySelector("#myDiv").innerHTML="";
+    var txtValue = txt.value.split(/\n\r?/g);
+    var tabNumber = 0;
+    for(i in txtValue) {
+  
+       let txtValueTrim = txtValue[i].trim();
+       var firstWord = txtValueTrim.replace(/ .*/,'');
+     
+       if (firstWord == "END-IF") {
+          tabNumber = tabNumber - 1;
+       }
+  
+       let spaces = "";
+       for (let i = 0; i < tabNumber; i++) {
+          spaces = spaces + "&nbsp&nbsp&nbsp&nbsp";
+       }
   
   //let space = document.createElement("span");
   //space.innerHTML = "&nbsp&nbsp&nbsp&nbsp";  
@@ -39,22 +50,34 @@ btn1.onclick = function() {
   //var node = document.createTextNode(txtValue[i]);
   //document.querySelector("#myDiv").appendChild(node);
 
-  let txtValueTrim = txtValue[i].trim();
-  var firstWord = txtValueTrim.replace(/ .*/,'');
 
   let newDiv = document.createElement("div");
   
   newDiv.setAttribute("class", "democlass");
   //newDiv.innerHTML = txtValue[i];
-  newDiv.innerHTML = spaces + firstWord;
+  newDiv.innerHTML = spaces + txtValueTrim;
   document.querySelector("#myDiv").appendChild(newDiv);
   
+  
   if (firstWord == "IF") {
-     spaces = spaces + "&nbsp&nbsp&nbsp&nbsp";
+     tabNumber = tabNumber + 1;
   }
+     
+       if (firstWord == "PERFORM") {
+          let oldi = i;
+          alert(oldi);
+          let newi = searchPerform(txtValue);
+          alert(newi);
+       }
   //let lineBreak = document.createElement("br");
   //document.querySelector("#myDiv").appendChild(lineBreak); 
  }
 }
+
+   function searchPerform(txtValue) {
+      for(i in txtValue) {
+         alert(txtValue[i]);
+      }
+   } 
 
 </script>
