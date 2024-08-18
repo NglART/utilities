@@ -40,7 +40,7 @@ var btn1 = document.querySelector("#btn1");
   
        let spaces = "";
        for (let i = 0; i < tabNumber; i++) {
-          spaces = spaces + "&nbsp&nbsp&nbsp&nbsp";
+          spaces = spaces + "&nbsp&nbsp&nbsp";
        }
   
   //let space = document.createElement("span");
@@ -62,50 +62,45 @@ var btn1 = document.querySelector("#btn1");
      tabNumber = tabNumber + 1;
   }
      
-       if (firstWord == "PERFORM") {
-          spaces = spaces + "&nbsp&nbsp&nbsp&nbsp";
-          let oldi = i;
-  //        alert(oldi);
-          var secondString = txtValue[i].replace(firstWord,'');
-          let secondStringTrim = secondString.trim();
-          var secondWord = secondStringTrim.replace(/ .*/,'');
-//          alert(secondString);
-          let newi = searchPerform(txtValue, secondWord);
-          for(p in txtValue) {
-             if (p > newi) {
-                let txtValueTrimP = txtValue[p].trim();
-                let newDiv = document.createElement("div");
-                newDiv.setAttribute("class", "democlass");
-                newDiv.innerHTML = spaces + txtValueTrimP;
-                document.querySelector("#myDiv").appendChild(newDiv);
-             }
-          }
- //         alert(newi);
-       }
+  if (firstWord == "PERFORM") {
+     let oldi = i;
+     var secondString = txtValue[i].replace(firstWord,'');
+     let secondStringTrim = secondString.trim();
+     var secondWord = secondStringTrim.replace(/ .*/,'');
+     let newi = searchPerform(txtValue, secondWord, tabNumber);   
+  }
   //let lineBreak = document.createElement("br");
   //document.querySelector("#myDiv").appendChild(lineBreak); 
  }
 }
 
-   function searchPerform(txtValue, secondWord) {
+   function searchPerform(txtValue, secondWord, tabNumber) {
       let find = false;
-      for(i in txtValue) {
-       let txtValueTrim = txtValue[i].trim();
-       let firstWord = txtValueTrim.replace(/ .*/,'');
-       
-       if (firstWord == secondWord.concat(".")) {
-          find = true;
-       }
-       
-       if (find) {
-                let newDiv = document.createElement("div");
-                newDiv.setAttribute("class", "democlass");
-                newDiv.innerHTML = "find";
-                document.querySelector("#myDiv").appendChild(newDiv);
-          return i;
-       }
-       
+      tabNumber ++;
+    
+      let spaces = "";
+      for (let i = 0; i < tabNumber; i++) {
+         spaces = spaces + "&nbsp&nbsp&nbsp";
       }
+    
+      for(i in txtValue) {
+         let txtValueTrim = txtValue[i].trim();
+         let firstWord = txtValueTrim.replace(/ .*/,'');
+       
+         if (firstWord == secondWord.concat(".")) {
+            i ++;
+            find = true;
+         }
+       
+         if (find) {
+            let txtValueTrim = txtValue[i].trim();
+            let newDiv = document.createElement("div");
+            newDiv.setAttribute("class", "democlass");
+            newDiv.innerHTML = spaces + txtValueTrim;
+            document.querySelector("#myDiv").appendChild(newDiv);
+         }
+      }
+      return i;
    } 
 
 </script>
