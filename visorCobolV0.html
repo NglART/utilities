@@ -2,6 +2,9 @@
 textarea {
  width: 100%;
 }
+.democlass {
+  color: red;
+}
 </style>
 
 <textarea id="textarea1"></textarea>
@@ -29,6 +32,7 @@ btn1.onclick = function() {
   document.querySelector("#myDiv").appendChild(node);
 
   let newDiv = document.createElement("div");
+  newDiv.setAttribute("class", "democlass");
   newDiv.innerHTML = txtValue[i];
   document.querySelector("#myDiv").appendChild(newDiv);
   
